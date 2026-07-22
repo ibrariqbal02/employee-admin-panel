@@ -8,6 +8,7 @@ import EmployeeForm from "../../organsims/EmployeeForm";
 import type { Employee } from "../../types/employee";
 import useDeleteEmployee from "../../hook/useDeleteEmployee";
 import "./Employees.css";
+import { useIsFetching } from "@tanstack/react-query";
 
 const Employees = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -85,7 +86,7 @@ const Employees = () => {
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
-
+      {useIsFetching && <span className="muted-text">Updating…</span>}
       <Pagination
         currentPage={currentPage}
         totalPages={data?.totalPages ?? 1}
